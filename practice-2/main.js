@@ -6,10 +6,7 @@ class CreateTable {
     // (INIT) создает таблицу на основе данных
     async create() {
         const data = await this.getPosts()
-        console.log(data)
-
         this.createDefaultTable()
-
         data.forEach(this.addToTable)
     }
 
@@ -39,6 +36,23 @@ class CreateTable {
     }
 
     /**
+     * Создает DOM эллемент таблицы TH и наполняет его данными
+     * @param {String} text - текст для наполнения
+     * @param {Boolean} first - является ли это шапкой таблицы
+     * @returns DOM эллемент
+     */
+    createTH(text, first) {
+        const th = document.createElement('th')
+        th.classList.add('table__th')
+
+        // дополнительные классы для заголовков таблицы
+        if (first === true) th.classList.add('table__header--column')
+
+        th.innerHTML = text
+        return th
+    }
+
+    /**
      * добавляет ряд в таблицу
      * @param {Object} data - данные на основе которых будет добавлен ряд в таблицу
      * @param {Boolean} first - является ли это шапкой таблицы
@@ -52,39 +66,11 @@ class CreateTable {
             DOM_tr.classList.add('table__header--line')
         }
 
-        const DOM_userId = document.createElement('th')
-        const DOM_id = document.createElement('th')
-        const DOM_title = document.createElement('th')
-        const DOM_body = document.createElement('th')
-
-        DOM_userId.classList.add('table__th')
-        DOM_id.classList.add('table__th')
-        DOM_title.classList.add('table__th')
-        DOM_body.classList.add('table__th')
-
-        // дополнительные классы для заголовков таблицы
-        if (first === true) {
-            DOM_userId.classList.add('table__header--column')
-            DOM_id.classList.add('table__header--column')
-            DOM_title.classList.add('table__header--column')
-            DOM_body.classList.add('table__header--column')
-        }
-
-        DOM_userId.innerHTML = data.userId
-        DOM_id.innerHTML = data.id
-        DOM_title.innerHTML = data.title
-        DOM_body.innerHTML = data.body
-
-        DOM_tr.appendChild(DOM_userId)
-        DOM_tr.appendChild(DOM_id)
-        DOM_tr.appendChild(DOM_title)
-        DOM_tr.appendChild(DOM_body)
+        DOM_tr.appendChild(this.createTH(data.userId, first))
+        DOM_tr.appendChild(this.createTH(data.id, first))
+        DOM_tr.appendChild(this.createTH(data.title, first))
+        DOM_tr.appendChild(this.createTH(data.body, first))
 
         this.table.appendChild(DOM_tr)
-        // return { DOM_tr, DOM_userId, DOM_id, DOM_title, DOM_title, DOM_body }
     }
 }
-
-
-// const table = new CreateTable()
-// table.create()
