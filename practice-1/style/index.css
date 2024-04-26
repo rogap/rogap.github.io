@@ -166,6 +166,10 @@ body {
     width: 100%;
     text-align: center;
 }
+.modal-partner__span:before {
+    content: '✱';
+    color: red;
+}
 
 .group-image__button-close {
     position: absolute;
@@ -179,6 +183,22 @@ body {
     color: #fff;
     line-height: 28px;
     text-decoration: underline;
+}
+
+.modal-partner__file-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-partner__file {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+    opacity: 0;
 }
 
 

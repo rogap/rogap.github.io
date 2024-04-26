@@ -51,6 +51,7 @@ class Modal {
         const email = document.querySelector('.modal-partner__input--email')
         const direction = document.querySelector('.modal-partner__input--direction')
         const director = document.querySelector('.modal-partner__input--director')
+        const file = document.querySelector('.modal-partner__file')
 
         if ( !/[a-zа-я -]{3,50}/i.test(nameOrg.value.trim().replaceAll(/[ ]+/g, ' ')) ) 
             return { status: false, message: 'Название организации' }
@@ -67,6 +68,8 @@ class Modal {
 
         if ( !/[a-zа-я -]{3,50}/i.test(director.value.trim().replaceAll(/[ ]+/g, ' ')) ) 
             return { status: false, message: 'Руководитель' }
+
+        if ( !file.value.length ) return { status: false, message: 'Логотип' }
 
         return { status: true }
     }
