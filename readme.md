@@ -1,11 +1,7 @@
-# Чуточку информации
+# Vue 3 + Vite
 
-- Точки с запятой в `js` я обычно ставлю только когда они реально необходимы, но если нужно я могу ставить всегда, просто привык так.
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-# Ссылочки:
+## Recommended IDE Setup
 
-- [GitHub Pages](https://rogap.github.io/)
-- [Теория](https://github.com/rogap/rogap.github.io/blob/main/theory/theory.md)
-- [Практика-1](https://rogap.github.io/practice-1/index.html)
-- [Практика-2](https://rogap.github.io/practice-2/index.html)
-- [Практика-3](https://rogap.github.io/practice-3/index.html)
+- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
