@@ -3,9 +3,9 @@ import { ref } from 'vue'
 
 const props = defineProps([ 'status', 'name' ])
 const emit = defineEmits([ 'setName', 'setStatus', 'reset' ])
-
 const status = ref(props.status)
 const name = ref(props.name)
+
 
 const applyStatus = () => {
     emit('setStatus', status.value)

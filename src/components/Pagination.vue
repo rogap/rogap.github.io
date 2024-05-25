@@ -1,12 +1,9 @@
 <script setup>
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, toRefs } from 'vue'
 
 const props = defineProps([ 'lastNumberPage', 'pageNum', 'disabled' ])
 const emit = defineEmits([ 'setPage' ])
-
-const lastNumberPage = computed(() => props.lastNumberPage)
-const pageNum = computed(() => props.pageNum)
-const disabled = computed(() => props.disabled)
+const { lastNumberPage, pageNum, disabled } = toRefs(props)
 
 
 

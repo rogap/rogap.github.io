@@ -4,7 +4,8 @@ import ControlPanel from '@/components/ControlPanel.vue'
 import Pagination from '@/components/Pagination.vue'
 
 import { ref, reactive, onMounted, computed } from 'vue'
-import axios from 'axios'
+
+import getCharactersPage from '@/api/getCharactersPage.js'
 
 const charactersData = ref({}) // данные персонажей
 const lastNumberPage = ref(null) // сколько всего страниц
@@ -17,16 +18,6 @@ const disabled = ref(false) // нужно ли запретить пагинац
 const showError = ref(false) // показывать ли ошибку
 
 
-/**
- * Получает список персонажей указанной страницы с примененными фильтрами
- * @param {Number} page - страница для запроса данных
- */
-const getCharactersPage = async page => {
-    const url = `https://rickandmortyapi.com/api/character/?page=${page}&name=${name.value}&status=${status.value}`
-    const { data: { info, results } } = await axios.get(url)
-    lastNumberPage.value = info.pages // запоминаем сколько страниц
-    return results
-}
 
 /**
  * Обновляет отображаемых персонажей на странице
@@ -38,7 +29,10 @@ const updateCharactersPage = async page => {
         disabled.value = true
         if (!page) page = pageNum.value
 
-        charactersData.value = await getCharactersPage(page)
+        const { info, results } = await getCharactersPage({ page, name: name.value, status: status.value })
+        charactersData.value = results
+        lastNumberPage.value = info.pages // запоминаем сколько страниц
+
         pageNum.value = page
         showError.value = false // убираем ошибку
         disabled.value = false

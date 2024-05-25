@@ -1,15 +1,10 @@
 <script setup>
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, toRefs } from 'vue'
 
-import axios from 'axios'
+import getEpizode from '@/api/getEpizode.js'
 
 const props = defineProps([ 'data' ])
 const data = reactive(props.data)
-
-const getEpizode = async (url) => {
-    const { data } = await axios.get(url)
-    return data
-}
 
 
 const epizodeData = reactive({ name: 'Загрузка...' })
